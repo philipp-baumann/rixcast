@@ -18,7 +18,7 @@ library("rix")
 
 rix(
   r_ver = "4.3.1",
-  r_pkgs = c("asciicast@2.3.0", "stringr@1.5.0"),
+  r_pkgs = c("stringr@1.5.0"),
   system_pkgs = NULL,
   git_pkgs = list(package_name = "rix",
                   repo_url = "https://github.com/b-rodrigues/rix/",
