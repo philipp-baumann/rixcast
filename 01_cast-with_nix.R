@@ -39,13 +39,13 @@ if (isFALSE(has_nix_path)) {
 has_nix_cli <- Sys.which("nix-build")
 
 if (isTRUE(has_nix_path) && nzchar(has_nix_cli)) {
-  cat ("❤️ Your have Nix installed on your system ❤️")
+  cat ("❤️ Your have Nix installed on your system ❤️\n")
   nix_build(
     project_path = ".",
     exec_mode = "non-blocking"
   )
 } else {
-  cat("😻 You will love Nix because no fiddling with system libraries")
+  cat("😻 You will love Nix because no fiddling with system libraries\n")
   # get most recent versions from CRAN
   install.packages(c("stringr", "asciicast"))
 }
@@ -92,6 +92,8 @@ out_nix_stringr <- with_nix(
   project_path = path_env_stringr,
   message_type = "verbose" # use "simple" for more clarity
 )
+
+cat("\n\n")
 
 # Finally, we can check if the result is really "a" or not:
 identical("a", out_nix_stringr)
