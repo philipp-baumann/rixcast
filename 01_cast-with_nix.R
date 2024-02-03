@@ -1,15 +1,55 @@
+cat("Blog: Bruno Rodrigues")
+cat("Reproducible data science with Nix, part 9 -- rix is looking for testers!")
+cat()
+cat("https://www.brodrigues.co/blog/2024-02-02-nix_for_r_part_9/")
+cat("{rix} is looking for beta testers ⌛ ⌛ ⌛ ⌛ ⌛ ⌛ ⌛ ⌛ ⌛ ⌛ ⌛ ⌛")
+
 ## 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 🏂 ##
+
+repos <- getOption("repos")
+repos["CRAN"] <- "https://cran.r-project.org/"
+options(repos = repos)
 
 install.packages("rix", repos = c("https://b-rodrigues.r-universe.dev",
   "https://cloud.r-project.org")
 )
 
-repos <- getOption("repos")
-repos["CRAN"] <- "https://cloud.r-project.org"
-
-if (!require("stringr") install.packages("stringr")
-
 library("rix")
+
+rix(
+  r_ver = "4.3.2",
+  r_pkgs = "asciicast@2.3.0", "stringr@1.5.0",
+  system_pkgs = NULL,
+  git_pkgs = list(package_name = "rix",
+                  repo_url = "https://github.com/b-rodrigues/rix/",
+                  branch_name = "master",
+                  commit = "d077ffa99c5929015ba5274480b041bbd760cfb7"),
+  ide = "other",
+  project_path = ".",
+  overwrite = TRUE,
+  print = TRUE
+)
+
+nix_pat <- "/nix/var/nix/profiles/default/bin"
+path <- Sys.getenv("PATH")
+has_nix_path <- grepl(pattern = nix_pat, x = path)
+if (isFALSE(has_nix_path)) {
+  Sys.setenv(PATH=paste0(path, ":", nix_path))
+}
+has_nix_cli <- Sys.which("nix-build")
+
+if (isTRUE(has_nix_path) && nzchar(has_nix_cli)) {
+  cat ("❤️ Your have Nix installed on your system ❤️")
+  nix_build(
+    project_path = ".",
+    exec_mode = "non-blocking"
+  )
+} else {
+  cat("😻 You will love Nix because no fiddling with system libraries")
+  # get most recent versions from CRAN
+  install.packages(c("stringr", "asciicast"))
+}
+
 library("stringr")
 
 ## ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ##
@@ -18,6 +58,8 @@ library("stringr")
 
 ## errors; breaking changes: https://stringr.tidyverse.org/news/index.html
 ## stringr 1.5.0
+## ""... str_detect(x, "") returned TRUE for all non-empty strings) and made it
+## easy to make mistakes when programming."
 ## CRAN release: 2022-12-02
 stringr::str_subset(c("", "a"), "")
 
@@ -52,5 +94,5 @@ out_nix_stringr <- with_nix(
 
 # Finally, we can check if the result is really "a" or not:
 identical("a", out_nix_stringr)
-
+cat("✅")
 sessionInfo()

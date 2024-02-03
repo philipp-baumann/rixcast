@@ -2,7 +2,7 @@ library("rix")
 
 rix(
   r_ver = "latest",
-  r_pkgs = NULL,
+  r_pkgs = "asciicast@2.3.0",
   system_pkgs = NULL,
   git_pkgs = list(package_name = "rix",
                   repo_url = "https://github.com/b-rodrigues/rix/",
