@@ -14,10 +14,10 @@ play(cast)
 svg <- "rix-0-6-0.svg"
 write_svg(cast, path = svg, window = TRUE)
 
-gif <- "rix-0-6-0.gif"
-write_gif(
-  cast,
-  path = gif,
-  cols = 80L,
-  speed = 3
-)
+# gif <- "rix-0-6-0.gif"
+# write_gif(
+#   cast,
+#   path = gif,
+#   cols = 80L,
+#   speed = 3
+# )
