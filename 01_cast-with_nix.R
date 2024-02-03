@@ -61,7 +61,7 @@ library("stringr")
 ## ""... str_detect(x, "") returned TRUE for all non-empty strings) and made it
 ## easy to make mistakes when programming."
 ## CRAN release: 2022-12-02
-stringr::str_subset(c("", "a"), "")
+try(stringr::str_subset(c("", "a"), ""))
 
 ## 🏔🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 🏔 ##
 
