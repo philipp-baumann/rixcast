@@ -88,7 +88,7 @@ rix(
 out_nix_stringr <- with_nix(
   expr = function() stringr::str_subset(c("", "a"), ""),
   program = "R",
-  exec_mode = "non-blocking",
+  exec_mode = "blocking",
   project_path = path_env_stringr,
   message_type = "verbose" # use "simple" for more clarity
 )
