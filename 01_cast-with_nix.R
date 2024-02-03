@@ -98,4 +98,12 @@ cat("\n\n")
 # Finally, we can check if the result is really "a" or not:
 identical("a", out_nix_stringr)
 cat("✅")
-sessionInfo()
+
+# double check
+with_nix(
+  expr = function() {library("stringr"; sessionInfo()}
+  program = "R",
+  exec_mode = "blocking",
+  project_path = path_env_stringr,
+  message_type = "verbose"
+)
