@@ -101,7 +101,7 @@ cat("✅")
 
 # double check
 with_nix(
-  expr = function() {library("stringr"); sessionInfo()}
+  expr = function() {library("stringr"); sessionInfo()},
   program = "R",
   exec_mode = "blocking",
   project_path = path_env_stringr,
