@@ -17,7 +17,7 @@ install.packages("rix", repos = c("https://b-rodrigues.r-universe.dev",
 library("rix")
 
 rix(
-  r_ver = "4.3.2",
+  r_ver = "4.3.1",
   r_pkgs = "asciicast@2.3.0", "stringr@1.5.0",
   system_pkgs = NULL,
   git_pkgs = list(package_name = "rix",
@@ -30,9 +30,9 @@ rix(
   print = TRUE
 )
 
-nix_pat <- "/nix/var/nix/profiles/default/bin"
+nix_path <- "/nix/var/nix/profiles/default/bin"
 path <- Sys.getenv("PATH")
-has_nix_path <- grepl(pattern = nix_pat, x = path)
+has_nix_path <- grepl(pattern = nix_path, x = path)
 if (isFALSE(has_nix_path)) {
   Sys.setenv(PATH=paste0(path, ":", nix_path))
 }
@@ -76,7 +76,7 @@ rix_init(
   message_type = "simple"
 )
 
-# define the subshell
+# Define the subshell
 rix(
   r_ver = "latest",
   r_pkgs = "stringr@1.4.1",
@@ -84,6 +84,7 @@ rix(
   project_path = path_env_stringr
 )
 
+# Evaluate `stringr::str_subset(c("", "a"), "")` inside that subshell
 out_nix_stringr <- with_nix(
   expr = function() stringr::str_subset(c("", "a"), ""),
   program = "R",
